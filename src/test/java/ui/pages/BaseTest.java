@@ -10,11 +10,11 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 import pages.CheckBoxPO;
+import pages.RadioButtonPO;
 import pages.TextBoxPO;
 import utils.DriverManager;
 
 
-import java.net.MalformedURLException;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -24,6 +24,7 @@ public abstract class BaseTest {
     public Faker faker = new Faker();
     protected TextBoxPO textBox = new TextBoxPO();
     protected CheckBoxPO checkBox = new CheckBoxPO();
+    protected RadioButtonPO radioButton = new RadioButtonPO();
 
 
     @AfterMethod
@@ -47,7 +48,7 @@ public abstract class BaseTest {
 
 
     @BeforeTest
-    public void beforeTest() throws MalformedURLException {
+    public void beforeTest() {
         DriverManager.init();
 
         Selenide.open();

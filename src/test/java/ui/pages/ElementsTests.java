@@ -4,8 +4,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 
 public class ElementsTests extends BaseTest{
@@ -34,5 +33,17 @@ public class ElementsTests extends BaseTest{
         checkBox.clickOnElement("Public");
         assertTrue(checkBox.elementIsSelected("Public"));
         assertEquals(checkBox.getResultTextByIndex("1"), "public");
+    }
+
+    @Epic(value = "UI")
+    @Feature(value = "Elements")
+    @Test
+    public void checkRadioButton() {
+        radioButton.open();
+        radioButton.clickOnElement("Yes");
+        assertEquals(radioButton.getResultText(), "Yes");
+        radioButton.clickOnElement("Impressive");
+        assertEquals(radioButton.getResultText(), "Impressive");
+        assertFalse(radioButton.elementIsSelected("No"));
     }
 }
