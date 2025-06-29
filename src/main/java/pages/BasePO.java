@@ -6,11 +6,11 @@ import org.testng.Reporter;
 
 import static utils.PropertiesLoader.getProp;
 
-public abstract class Base {
+public abstract class BasePO {
     private final String REL_URL;
     private static String BASE_URL;
 
-    public Base(String url) {
+    public BasePO(String url) {
         REL_URL = url;
 
         if (BASE_URL == null) {
@@ -41,7 +41,7 @@ public abstract class Base {
         Selenide.open(url);
     }
 
-    public Base open() {
+    public BasePO open() {
         String s = BASE_URL + REL_URL;
         openUrl(s);
         return this;

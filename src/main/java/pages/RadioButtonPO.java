@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class RadioButtonPO extends Base {
+public class RadioButtonPO extends BasePO {
     private static final String RADIO_BUTTON_URL = "/radio-button";
 
     public RadioButtonPO() {

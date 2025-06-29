@@ -12,6 +12,7 @@ import org.testng.annotations.*;
 import pages.CheckBoxPO;
 import pages.RadioButtonPO;
 import pages.TextBoxPO;
+import pages.WebTablesPO;
 import utils.DriverManager;
 
 
@@ -25,6 +26,7 @@ public abstract class BaseTest {
     protected TextBoxPO textBox = new TextBoxPO();
     protected CheckBoxPO checkBox = new CheckBoxPO();
     protected RadioButtonPO radioButton = new RadioButtonPO();
+    protected WebTablesPO webTables = new WebTablesPO();
 
 
     @AfterMethod

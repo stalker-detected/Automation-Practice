@@ -30,7 +30,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static pages.Base.getBaseUrl;
+import static pages.BasePO.getBaseUrl;
 
 import static com.fasterxml.jackson.core.JsonToken.*;
 import static com.fasterxml.jackson.core.JsonToken.VALUE_TRUE;

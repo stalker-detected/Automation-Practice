@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-import static pages.Base.getBaseUrl;
+import static pages.BasePO.getBaseUrl;
 import static utils.PropertiesLoader.getProp;
 
 public class DriverManager {

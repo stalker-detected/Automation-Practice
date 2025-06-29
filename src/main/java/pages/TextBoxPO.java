@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class TextBoxPO extends Base{
+public class TextBoxPO extends BasePO {
     private static final String TESTBOX_URL = "/text-box";
     public TextBoxPO() {
         super(TESTBOX_URL);

@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class CheckBoxPO extends Base {
+public class CheckBoxPO extends BasePO {
     private static final String CHECKBOX_URL = "/checkbox";
 
     public CheckBoxPO() {
