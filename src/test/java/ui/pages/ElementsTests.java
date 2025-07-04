@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 
-public class ElementsTests extends BaseTest{
+public class ElementsTests extends BaseTest {
     @Epic(value = "UI")
     @Feature(value = "Elements")
     @Test
@@ -73,5 +73,46 @@ public class ElementsTests extends BaseTest{
         assertEquals(webTables.getEmailInTable(4), email);
         assertEquals(webTables.getSalaryInTable(4), salary);
         assertEquals(webTables.getDepartmentInTable(4), department);
+    }
+
+    @Epic(value = "UI")
+    @Feature(value = "Elements")
+    @Test
+    public void checkLinks() {
+        links.open();
+        startTrafficCapture();
+        links.clickOnCreated();
+        assertEquals(interceptRequest("/created").getResponse().getStatus(), 201);
+        assertEquals(links.getResponseText(), "Link has responded with staus 201 and status text Created");
+
+        startTrafficCapture();
+        links.clickOnNoContent();
+        assertEquals(interceptRequest("/no-content").getResponse().getStatus(), 204);
+        assertEquals(links.getResponseText(), "Link has responded with staus 204 and status text No Content");
+
+        startTrafficCapture();
+        links.clickOnMoved();
+        assertEquals(interceptRequest("/moved").getResponse().getStatus(), 301);
+        assertEquals(links.getResponseText(), "Link has responded with staus 301 and status text Moved Permanently");
+
+        startTrafficCapture();
+        links.clickOnBadRequest();
+        assertEquals(interceptRequest("/bad-request").getResponse().getStatus(), 400);
+        assertEquals(links.getResponseText(), "Link has responded with staus 400 and status text Bad Request");
+
+        startTrafficCapture();
+        links.clickOnUnauthorized();
+        assertEquals(interceptRequest("/unauthorized").getResponse().getStatus(), 401);
+        assertEquals(links.getResponseText(), "Link has responded with staus 401 and status text Unauthorized");
+
+        startTrafficCapture();
+        links.clickOnForbidden();
+        assertEquals(interceptRequest("/forbidden").getResponse().getStatus(), 403);
+        assertEquals(links.getResponseText(), "Link has responded with staus 403 and status text Forbidden");
+
+        startTrafficCapture();
+        links.clickOnNotFound();
+        assertEquals(interceptRequest("/invalid-url").getResponse().getStatus(), 404);
+        assertEquals(links.getResponseText(), "Link has responded with staus 404 and status text Not Found");
     }
 }

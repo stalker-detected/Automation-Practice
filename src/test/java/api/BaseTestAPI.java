@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import generated.openApi.api.epicentrk.PetApi;
+import generated.openApi.api.petStore.PetApi;
 import groovy.json.StringEscapeUtils;
 import io.qameta.allure.Allure;
 import io.qameta.allure.restassured.AllureRestAssured;
