@@ -47,6 +47,7 @@ public class TextBoxPO extends BasePO {
 
     @Step("Click submit")
     public TextBoxPO clickSubmit() {
+        submitSel.scrollTo();
         submitSel.click();
         return this;
     }

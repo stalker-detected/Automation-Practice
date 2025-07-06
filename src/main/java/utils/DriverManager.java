@@ -2,8 +2,8 @@ package utils;
 
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.net.NetworkUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 
@@ -40,11 +40,14 @@ public class DriverManager {
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
         Configuration.timeout = Long.parseLong(PropertiesLoader.getProp("timeout"));
+        Configuration.proxyEnabled = true;
 
         if (browserName.equalsIgnoreCase("chrome"))
             getChromeInstance();
         else if (browserName.equalsIgnoreCase("firefox"))
             getFirefoxInstance();
+        else if (browserName.equalsIgnoreCase("edge"))
+            getEdgeInstance();
         else
             getChromeInstance();
     }
@@ -62,7 +65,6 @@ public class DriverManager {
             chromeOptions.setExperimentalOption("prefs", prefs);
             Configuration.browserCapabilities = chromeOptions;
             Configuration.browserSize = null;
-            Configuration.proxyEnabled = true;
         } else {
             DesiredCapabilities capabilities1 = new DesiredCapabilities();
 
@@ -92,15 +94,60 @@ public class DriverManager {
             Configuration.browserSize = "1920x1080";
             Configuration.browserCapabilities = merge;
             Configuration.remote = REMOTE_URL;
-            Configuration.proxyEnabled = true;
-            Configuration.proxyHost = new NetworkUtils().getNonLoopbackAddressOfThisMachine();
-            System.out.println(new NetworkUtils().getNonLoopbackAddressOfThisMachine());
         }
     }
 
     private static void getFirefoxInstance()  {
+        if (!browserType.equalsIgnoreCase("remote")) {
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             firefoxOptions.addArguments("--ignore-certificate-errors");
+
             Configuration.browserCapabilities = firefoxOptions;
+        } else {
+            DesiredCapabilities capabilities2 = new DesiredCapabilities();
+
+            capabilities2.setBrowserName("firefox");
+            capabilities2.setVersion("125.0");
+            capabilities2.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true,
+                    "enableLog", false,
+                    "sessionTimeout", "10m"
+            ));
+
+            Configuration.browserSize = "1920x1080";
+            Configuration.browserCapabilities = capabilities2;
+            Configuration.remote = REMOTE_URL;
+        }
+
+    }
+
+    private static void getEdgeInstance() {
+        if (!browserType.equalsIgnoreCase("remote")) {
+            EdgeOptions edgeOptions = new EdgeOptions();
+            edgeOptions.addArguments("--ignore-certificate-errors");
+            edgeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+            Map<String, Object> prefs = new HashMap<String, Object>();
+            prefs.put("credentials_enable_service", false);
+            prefs.put("profile.password_manager_enabled", false);
+
+            edgeOptions.setExperimentalOption("prefs", prefs);
+            Configuration.browserCapabilities = edgeOptions;
+        } else {
+            DesiredCapabilities capabilities3 = new DesiredCapabilities();
+
+            capabilities3.setBrowserName("MicrosoftEdge");
+            capabilities3.setVersion("124.0");
+            capabilities3.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true,
+                    "enableLog", false,
+                    "sessionTimeout", "10m"
+            ));
+
+            Configuration.browserSize = "1920x1080";
+            Configuration.browserCapabilities = capabilities3;
+            Configuration.remote = REMOTE_URL;
+        }
     }
 }

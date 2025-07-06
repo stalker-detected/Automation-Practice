@@ -39,11 +39,11 @@ Selenoid
 
 Use this command to run the ElementsTests class with the `baseUrl` parameter:
 ```bash
-mvn test surefire:test -Dtest=ElementsTests -Dtestng.baseUrl=demoQa
+mvn test surefire:test -Dtest=ElementsTests -Dtestng.baseUrl=demoQa -Dtestng.browser=chrome
 ```
 ### ⚙️ Run all UI tests
 ```bash
-mvn test surefire:test -Dsurefire.suiteXmlFiles=src/test/resources/regress_UI_tests.xml -Dtestng.baseUrl=demoQa
+mvn test surefire:test -Dsurefire.suiteXmlFiles=src/test/resources/regress_UI_tests.xml -Dtestng.baseUrl=demoQa -Dtestng.browser=chrome
 ```
 
 ### ⚙️ Run all API tests
