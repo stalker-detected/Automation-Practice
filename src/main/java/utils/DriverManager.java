@@ -18,7 +18,7 @@ public class DriverManager {
     private static String browserName = System.getProperty("browser");
     private static String browserType = System.getProperty("driverType");
 
-    private static final String REMOTE_URL = getProp("remoteServerURL");
+    private static final String REMOTE_URL = getProp("remoteServerURL") + ":4444/wd/hub";
 
     public static void init() {
         if (browserName != null) {

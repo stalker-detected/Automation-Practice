@@ -47,11 +47,13 @@ public class LinksPO extends BasePO{
 
     @Step("Click on link Forbidden")
     public void clickOnForbidden() {
+        forbiddenSel.scrollTo();
         forbiddenSel.click();
     }
 
     @Step("Click on link Not Found")
     public void clickOnNotFound() {
+        notFoundSel.scrollTo();
         notFoundSel.click();
     }
 

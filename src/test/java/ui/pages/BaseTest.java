@@ -14,13 +14,20 @@ import org.testng.Reporter;
 import org.testng.annotations.*;
 import pages.*;
 import utils.DriverManager;
+import utils.listeners.ScreenshotAndVideoListener;
 
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.getSelenideProxy;
+import static utils.PropertiesLoader.getProp;
 
+@Listeners({ScreenshotAndVideoListener.class})
 
 public abstract class BaseTest {
     public SessionId session;
@@ -70,6 +77,27 @@ public abstract class BaseTest {
     @AfterTest(alwaysRun = true)
     public void afterTest(ITestContext iTestContext) {
         closeWebDriver();
+
+        if (iTestContext.getFailedTests().size() == 0 && iTestContext.getFailedConfigurations().size() == 0 ) {
+            //only for "remote"
+            if (getProp("driverType").equals("remote")) {
+                //delete the video by its SessionID
+                int httpCon1 = 0;
+                do {
+                    try {
+                        URL url = new URL(getProp("remoteServerURL") + ":4444/video/" + session + ".mp4");
+                        HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+                        httpCon.setRequestMethod("DELETE");
+                        httpCon1 = httpCon.getResponseCode();
+
+                    } catch (MalformedURLException ignored) {
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } while (httpCon1 != 200);
+                System.out.println("The test run was successful, so the video recording on the server was deleted!");
+            }
+        }
     }
 
     public void startTrafficCapture() {
