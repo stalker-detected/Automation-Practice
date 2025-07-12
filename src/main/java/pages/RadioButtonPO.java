@@ -22,7 +22,7 @@ public class RadioButtonPO extends BasePO {
         return $x("//div[contains(@class,\"custom-control\")]/label[text()='" + element + "']/../input");
     }
 
-    @Step("Click on element\"{element}\"")
+    @Step("Click on element \"{element}\"")
     public void clickOnElement(String element) {
         elementSel(element).click();
     }
