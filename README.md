@@ -18,6 +18,14 @@ This project demonstrates modern automation practices using the following techno
 
 🌐 REST Assured – fluent Java DSL for testing REST APIs
 
+### 🔗 Testing Resources
+
+| Name              | Type   | Link                                              | Description                                                    |
+|-------------------|--------|---------------------------------------------------|----------------------------------------------------------------|
+| DemoQA            | UI     | [demoqa.com](https://demoqa.com)                 | A website for practicing UI automation testing.                |
+| Swagger Petstore  | API    | [petstore.swagger.io](https://petstore.swagger.io) | A public REST API with OpenAPI documentation for testing.      |
+
+
 ## 📦 How to Install
 
 Clone the project:

@@ -4,9 +4,11 @@ import com.browserup.bup.BrowserUpProxy;
 import com.browserup.bup.proxy.CaptureType;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
 import de.sstoehr.harreader.model.HarEntry;
 import io.qameta.allure.Allure;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.remote.SessionId;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -73,6 +75,8 @@ public abstract class BaseTest {
         session = Selenide.sessionId();
         System.out.println("ID this session = " + session);
         Allure.addAttachment("ID this session ", session.toString());
+
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterTest(alwaysRun = true)
