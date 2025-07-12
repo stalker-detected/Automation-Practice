@@ -53,9 +53,9 @@ mvn test surefire:test -Dsurefire.suiteXmlFiles=src/test/resources/regress_API_t
 ```
 ## ⚡ Features
 
-[//]: # (### Parallel test execution)
+### Parallel test execution
 
-[//]: # (An example command was given above when running UI autotests. Using testng.xml, you can run autotests in parallel.)
+An example command was given above when running UI autotests. Using testng.xml, you can run autotests in parallel.
 
 ### Remote execution
 Autotests can be run remotely using Selenoid.

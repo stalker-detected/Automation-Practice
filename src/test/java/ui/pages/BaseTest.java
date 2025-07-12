@@ -38,6 +38,7 @@ public abstract class BaseTest {
     protected RadioButtonPO radioButton = new RadioButtonPO();
     protected WebTablesPO webTables = new WebTablesPO();
     protected LinksPO links = new LinksPO();
+    protected MainPagePO mainPagePO = new MainPagePO();
 
 
     @AfterMethod
