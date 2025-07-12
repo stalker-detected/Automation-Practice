@@ -43,7 +43,7 @@
                         </property>
                         <property>
                             <name>driverType</name>
-                            <value>local</value>
+                            <value>${testng.driverType}</value>
                         </property>
                         <property>
                             <name>baseUrl</name>
@@ -120,6 +120,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <testng.browser>chrome</testng.browser>
         <testng.baseUrl>petStore</testng.baseUrl>
+        <testng.driverType>local</testng.driverType>
         <testng.allure-results>allure-results</testng.allure-results>
         <aspectj.version>1.9.9.1</aspectj.version>
     </properties>

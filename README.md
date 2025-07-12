@@ -51,6 +51,28 @@ mvn test surefire:test -Dsurefire.suiteXmlFiles=src/test/resources/regress_UI_te
 
 mvn test surefire:test -Dsurefire.suiteXmlFiles=src/test/resources/regress_API_tests.xml -Dtestng.baseUrl=petStore
 ```
+## ⚡ Features
+
+[//]: # (### Parallel test execution)
+
+[//]: # (An example command was given above when running UI autotests. Using testng.xml, you can run autotests in parallel.)
+
+### Remote execution
+Autotests can be run remotely using Selenoid.
+```bash
+mvn test surefire:test -Dsurefire.suiteXmlFiles=src/test/resources/regress_UI_tests.xml -Dtestng.baseUrl=demoQa -Dtestng.browser=chrome -Dtestng.driverType=remote
+```
+⚠️ Attention! For this to work, you need to specify the remote Selenoid URL in src/main/resources/settings.properties in remoteServerURL. 
+Also, in utils/DriverManager.java, you need to specify the browser version that you have in the Docker image via setVersion.
+
+### Multi-browser support
+Currently, it is launched in these browsers.
+
+| Browser  |  Local  | Remote  |
+|----------|:-------:|:-------:|
+| Chrome   |    ✅    |    ✅    |
+| Firefox  |    ✅    |    ✅    |
+| Edge     |    ✅    |    ✅    |
 
 ## 🛠Tech stack
 - Java
